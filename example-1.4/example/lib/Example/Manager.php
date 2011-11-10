@@ -32,7 +32,7 @@
 class Example_Manager {
 
     /**
-     * Consulta e retorna dados do elemento no bancom conforme id.
+     * Consulta e retorna dados do elemento no banco conforme id.
      * @param <int> $id
      * @return <array>
      */

@@ -21,12 +21,14 @@
 /**
  * Discar para Tronco e toca audio.
  *
- * Ação Exemplo de Regra de Negócio
+ * Ação Exemplo de Regra de Negócio.
+ * Baseada na ação DialTrunk.php, padrão do SNEP.
+ * 
  *
  * @category  Snep
  * @package   PBX_Rule_Action
  * @copyright Copyright (c) 2011 OpenS Tecnologia
- * @author Rafael Pereira Bozzetti
+ * @author    Henrique Grolli Bassotto
  */
 class TocaAudioDiscaTroncoAction extends PBX_Rule_Action {
 

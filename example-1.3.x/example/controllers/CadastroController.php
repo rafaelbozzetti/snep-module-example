@@ -28,7 +28,7 @@
 class Example_CadastroController extends Zend_Controller_Action {
 
     /**
-     * Método index, tem apenas links para os outros métodos.
+     * Método index, listagem padrão de itens.
      */
     public function indexAction() {
 
@@ -41,13 +41,14 @@ class Example_CadastroController extends Zend_Controller_Action {
         // Consulta no banco de dados
         $db = Zend_Registry::get('db');
 
+        // Cria objeto do tipo Zend_Db_Select e realiza consulta.
         $select = $db->select()
                 ->from('example');
 
         $stmt = $db->query($select);
         $examples = $stmt->fetchAll();
 
-        // Envia dados do select para view.
+        // Envia dados para view.
         $this->view->example = $examples;
 
         // Define links na barra de filtros.
@@ -58,28 +59,31 @@ class Example_CadastroController extends Zend_Controller_Action {
 
     }
 
-
+    /**
+     * Método add, adicionar item.
+     */
     public function addAction() {
 
         // Define o título da página, é mostrado automaticamente na view.
         $this->view->breadcrumb = $this->view->translate("Exemplo » Cadastro");
 
-        // Parse do arquivo formulário.
+        // Parse do arquivo de formulário.
         $xml = new Zend_Config_Xml( Zend_Registry::get("config")->system->path->base .
                                               "/modules/example/forms/cadastro.xml" );
         // Cria objeto Snep_Form
         $form = new Snep_Form( $xml);
+        
+        // setButton é um método da classe Snep_Form que inclue o menu padrão de botões.
         $form->setButton();
 
-
         // Verifica se existe dados sendo enviados via $_POST
-        // Se for verdadeiro, é porqyue o formulário foi submetido.
+        // Se for verdadeiro, é porque o formulário foi submetido.
         if ($this->_request->getPost()) {
 
-            // Chama método isValid() é confronta os dados submetidos pelo formulário.
+            // Chama método isValid() e confronta os dados submetidos pelo formulário.
             $isValid = $form->isValid($_POST);
 
-            // Neste if, caso tudo seja válido chama a classe (Model) para inserir o dado
+            // Caso tudo seja válido chama a classe (Model) para inserir o registro.
             if( $isValid ) {
 
                 // Chama método estático para adicionar o registro.
@@ -94,7 +98,10 @@ class Example_CadastroController extends Zend_Controller_Action {
         $this->view->form = $form;
 
     }
-
+    
+    /**
+     * Método remove,remove um item conforme id fornecido.
+     */
     public function removeAction() {
 
         // Define o título da página, é mostrado automaticamente na view.
@@ -112,6 +119,9 @@ class Example_CadastroController extends Zend_Controller_Action {
 
     }
 
+    /**
+     * Método edit, editar item conforme id fornecido.
+     */
     public function editAction() {
 
         // Define o título da página, é mostrado automaticamente na view.
@@ -130,9 +140,11 @@ class Example_CadastroController extends Zend_Controller_Action {
         $form = new Snep_Form( $xml);
 
         // Preenche dados do formulário com dados vindos do banco.
+        // Perceba que ele captura o elemento e ao mesmo tempo seta um valor para ele.
         $form->getElement('id')->setValue($dados['id']);
         $form->getElement('nome')->setValue($dados['nome']);
 
+        // Chama método que insere a barra padrão.
         $form->setButton();
 
         // Verifica se existe dados sendo enviados via $_POST
@@ -142,10 +154,10 @@ class Example_CadastroController extends Zend_Controller_Action {
             // Chama método isValid() é confronta os dados submetidos pelo formulário.
             $isValid = $form->isValid($_POST);
 
-            // Neste if, caso tudo seja válido chama a classe (Model) para inserir o dado
+            // Caso tudo seja válido chama a classe (Model) para inserir o dado.
             if( $isValid ) {
                 
-                // Chama método estático para adicionar o registro.
+                // Chama método estático para atualizar o registro.
                 Example_Manager::update($_POST);
                 
                 // Após remover ou nao dados redireciona para método index

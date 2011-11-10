@@ -28,7 +28,7 @@
 class Example_TesteController extends Zend_Controller_Action {
 
     /**
-     * Método index, tem apenas links para os outros métodos.
+     * Método index, Não está sendo utilizado, neste caso. 
      */
     public function indexAction() {
 
@@ -122,7 +122,6 @@ class Example_TesteController extends Zend_Controller_Action {
 
         // Envia o objeto Snep_Form para a View
         $this->view->form = $form;
-
     }
 
 }

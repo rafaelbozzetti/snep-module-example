@@ -29,13 +29,13 @@ class Example extends Snep_Module_Descriptor {
     
     public function __construct() {
 
-        // Seta dados do Módulo
+        // Define informações do Módulo
         $this->setName("Example Module");
         $this->setVersion("1.0");
         $this->setDescription("Module example of SNEP");
         $this->setModuleId('example');
 
-        // Definição de menus da aplicação
+        // Define os menus da aplicação.
         $menu_item = array(
             new Snep_Menu_Item('Snep_Example', "Consulta no Banco", "example/teste/database/"),
             new Snep_Menu_Item('Snep_Example', "Arquivo de Configuração", "example/teste/config/"),
@@ -43,25 +43,26 @@ class Example extends Snep_Module_Descriptor {
             new Snep_Menu_Item('Snep_Example', "Cadastro de Itens", "example/cadastro/index/")
         );
 
-        // Define item com subitens do menu_item.
+        // Define item de menu e sub itens do menu.
         $menu = new Snep_Menu_Item('example', 'Example Module', null, $menu_item);
 
         $this->setMenuTree(array($menu));
         
-        // Insere o caminho para as classes do módulo no include_path
+        // Define o caminho para as classes do módulo no include_path
         set_include_path( get_include_path() .
                           PATH_SEPARATOR .
                           Zend_Registry::get("config")->system->path->base .
                           "/modules/example/lib");
 
-        // Registra o namespace para as classes do módulo.
+        // Define o namespace para as classes do módulo.
         Zend_Loader_Autoloader::getInstance()->registerNamespace("Example_");
         
-
+        // Captura instancia do Zend_Controller_Front
         $front = Zend_Controller_Front::getInstance();
         $plugin = $front->getPlugin("AclPlugin");
 
-        /*
+        /* Definição dos resources do módulo, não funcional na série 1.3
+         * 
         if($plugin instanceof AclPlugin) {
             $acl = $plugin->getAcl();
             $acl->addResource("agents");
