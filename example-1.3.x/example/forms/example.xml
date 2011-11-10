@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>    
+    <elements>        
+        <campo01>
+            <type>text</type>
+            <options>
+                <label>Campo 1</label>
+                <required>true</required>
+                <description>Somente Números</description>
+                <validators>
+                    <alnum>
+                        <validator>Alnum</validator>
+                    </alnum>
+                    <regex>
+                        <validator>regex</validator>
+                        <options>
+                            <pattern>/[[:digit:]]/i</pattern>
+                        </options>
+                    </regex>
+                    <strlen>
+                        <validator>StringLength</validator>
+                        <options>
+                            <min>1</min>
+                            <max>3</max>
+                        </options>
+
+                    </strlen>
+                </validators>
+            </options>
+        </campo01>
+        <campo02>
+            <type>text</type>
+            <options>
+                <label>Campo 2</label>
+                <required>true</required>                
+            </options>
+        </campo02>
+        <campo3>
+            <type>Select</type>
+            <options>
+                <label>Campo 3</label>
+                <multioptions>
+                    <opcao1> Opção 1 </opcao1>
+                    <opcao2> Opção 2 </opcao2>
+                    <opcao3> Opção 3 </opcao3>
+                    <opcao4> Opção 4 </opcao4>
+                    <opcao5> Opção 5 </opcao5>
+                    <opcao6> Opção 6 </opcao6>
+                </multioptions>
+            </options>
+        </campo3>
+        <campo04>
+            <type>MultiCheckbox</type>
+            <options>
+                <label>Campo 4</label>
+            </options>
+        </campo04>
+    </elements>
+</form>

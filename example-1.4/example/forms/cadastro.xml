@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>    
+    <elements>        
+        <nome>
+            <type>text</type>
+            <options>
+                <label>Nome</label>
+                <required>true</required>                
+            </options>
+        </nome>
+        <id>
+            <type>hidden</type>
+        </id>
+    </elements>
+</form>

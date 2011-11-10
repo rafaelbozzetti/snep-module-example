@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : info.xml
+    Created on : 9 de Novembro de 2011, 13:34
+    Author     : Rafael Bozzetti <rafael@opens.com.br>
+    Description:
+        Purpose of the document follows.
+-->
+
+<example>
+    <group id="example" label="Example Module">
+        <resource id="teste_database" label="Consulta no Banco"></resource>
+        <resource id="teste_config" label="Arquivo de Configuração"></resource>
+        <resource id="teste_form" label="Formulários"></resource>
+        <resource id="cadastro_index" label="Cadastro de Itens"></resource>
+        <resource id="logs" label="Logs"></resource>
+    </group>
+</example>

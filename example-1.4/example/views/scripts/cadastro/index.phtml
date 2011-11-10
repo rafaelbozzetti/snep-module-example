@@ -1,0 +1,43 @@
+<?php
+$this->headLink()->appendStylesheet( $this->baseUrl() . "/css/index.css" );
+echo $this->render('filter.phtml');
+?>
+<div class="info_box">
+    Esta rotina manipula os dados no banco de dados, possue um controlador com metodos de listagem, inserção, remoção e edição de itens. <br />
+    Utiliza-se da classe Snep_Example_Manager para manipular os dados.
+</div>
+<table>
+   <thead>
+      <tr>
+         <th class="numeric"> <?php echo $this->translate('Número') ?> </th>
+         <th> <?php echo $this->translate('Nome') ?> </th>
+         <th colspan="2" class="action"> <?php echo $this->translate('Actions') ?> </th>
+      </tr>
+   </thead>
+   <tbody>
+    <?php
+    $c = 0;
+    if($this->example) :
+        foreach($this->example as $item ): ?>
+            <?php ($c ? $c = 0 : $c = 1 ); ?>
+            <tr class="c<?php echo $c ?>">
+                <td>
+                    <b> <?php echo $item['id'] ?> </b>
+                </td>
+                <td>
+                    <b> <?php echo $item['nome'] ?> </b>
+                </td>                
+                <td class="action">
+                    <a class="alterar" href="cadastro/edit/id/<?php echo $item['id'] ?>">
+                        <?php echo $this->translate('Edit')?>
+                    </a>
+                </td>
+                <td class="action">
+                    <a class="alterar" href="cadastro/remove/id/<?php echo $item['id'] ?>">
+                        <?php echo $this->translate('Delete')?>
+                    </a>                    
+                </td>
+            </tr>
+        <?php endforeach ?>
+    <?php endif ?>
+</table>

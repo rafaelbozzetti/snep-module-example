@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : resources.xml
+    Created on : 9 de Novembro de 2011, 13:43
+    Author     : Rafael Bozzetti <rafael@opens.com.br>
+    Description:
+        Purpose of the document follows.
+-->
+
+<module>
+    <name>Snep Example Module</name>
+    <description>Module example of SNEP</description>
+    <author>OpenS Tecnologia</author>
+    <website>www.snep.com.br</website>
+</module>

@@ -1,0 +1,17 @@
+<?php
+$this->headLink()->appendStylesheet( $this->baseUrl() . "/css/index.css" );
+?>
+<div class="info_box">
+Este exemplo consiste na montagem de um formulário e validação do mesmo.
+</div>
+
+<?php if( isset( $this->message ) ) : ?>
+     <h1> <?php echo $this->message ?> </h1>
+     <pre> <?php print_r( $this->dados )?> </pre>
+
+<?php else : ?>
+    <?php echo $this->form ?>        
+    
+<?php endif ?>
+
+

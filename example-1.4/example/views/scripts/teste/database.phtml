@@ -1,0 +1,40 @@
+<?php
+$this->headLink()->appendStylesheet( $this->baseUrl() . "/css/index.css" );
+?>
+<div class="content">
+    <div class="info_box">
+    Este exemplo consiste em uma consulta no banco de dados e disposição dos dados em uma tabela.
+    </div>
+    <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" >
+       <thead>
+          <tr>
+             <th> <?php echo $this->translate('Date') ?> </th>
+             <th> <?php echo $this->translate('Origem') ?> </th>
+             <th> <?php echo $this->translate('Destino') ?> </th>
+          </tr>
+       </thead>
+       <tbody>
+        <!-- Verifica se $this->calls possui dados -->
+        <?php if( $this->calls ) : ?>
+
+            <!-- Percorre $this->calls -->
+            <?php foreach( $this->calls as $id => $calls ) : ?>
+            <tr>
+                <td> 
+                <?php
+                    // Cria um objeto Zend_Date, passando a data como argumento.
+                    $data = new Zend_Date( $calls['calldate'] );
+                    // Método toString converte a data em um determinado padrão.
+                    echo $data->toString('dd/MM/yyyy H:m:s');
+                ?>
+                </td>
+                <td> <?php echo $calls['src']; ?> </td>
+                <td> <?php echo $calls['dst']; ?> </td>
+            </tr>
+            <!-- Encerramento do Foreach -->
+            <?php endforeach ?>
+        <!-- Encerramento do Uf -->
+        <?php endif ?>            
+       </tbody>
+    </table>
+</div>
