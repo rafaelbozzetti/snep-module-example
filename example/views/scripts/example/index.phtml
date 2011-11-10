@@ -1,0 +1,86 @@
+<?php
+$this->headLink()->appendStylesheet( $this->baseUrl() . "/css/index.css" );
+$this->headScript()->appendFile( $this->baseUrl() .'/includes/javascript/scriptaculous/src/scriptaculous.js');
+echo $this->render('filter.phtml');
+
+?>
+<table>
+   <thead>
+      <tr>
+         <th style="width: 5%;"> <?php echo $this->translate('Code') ?> </th>
+         <th style="width: 2%;"> <?php echo $this->translate('Active') ?> </th>
+         <th> <?php echo $this->translate('Source') ?> </th>
+         <th> <?php echo $this->translate('Destiny') ?> </th>
+         <th> <?php echo $this->translate('Description') ?> </th>
+         <th style="width: 5%;"> <?php echo $this->translate('Priority') ?> </th>
+         <th colspan="3" class="action"> <?php echo $this->translate('Actions') ?>  </th>
+      </tr>
+   </thead>
+   <tbody>
+    <?php
+    $c = false;
+    foreach($this->routes as $route ):
+        $c = !$c;
+    ?>
+        <tr class="c<?php echo $c ? 1 : 0; ?>">
+            <td> <b> <?php echo $route['id'] ?> </b> </td>
+            <td> <span style="cursor:pointer;" alt="<?php echo $this->translate("Enable/Disable"); ?>" id="id<?php echo $route['id']; ?>" class="regra<?php echo $route['ativa']; ?>" onclick="regras(<?php echo $route['id']; ?>)"></span> </td>
+            <td> <?php echo $route['origem'] ?> </td>
+            <td> <?php echo $route['destino'] ?> </td>
+            <td> <?php echo $route['desc'] ?> </td>
+            <td> <?php echo $route['prio'] ?> </td>
+
+            <td class="action">
+                <a class="alterar"  href='<?php echo $this->baseUrl(); ?>/index.php/route/edit/<?php echo $route['id'] ?>'>
+                    <?php echo $this->translate('Edit')?>
+                </a>
+            </td>
+            <td class="action">
+                <a class="membros"  href='<?php echo $this->baseUrl(); ?>/index.php/route/duplicate/<?php echo $route['id']?>' >
+                    <?php echo $this->translate('Duplicate')?>
+                </a>
+            </td>
+            <td class="action">
+                <span class="excluir" onclick="remove_regra('<?php echo $route['id']; ?>');">
+                    <?php echo $this->translate('Delete')?>
+                </span>
+            </td>
+        </tr>
+    <?php endforeach ?>
+</table>
+<script type="text/javascript">
+
+    function remove_regra(id) {
+        var url = '<?php echo $this->baseUrl(); ?>/index.php/route/delete/' + id;
+
+        if(confirm("Are you sure you want to remove this rule?")) {
+            window.location.href= url;
+        }
+    }
+
+    function regras(par) {
+        if($('id' + par).hasClassName('regra0')) {
+            troca_status(par)
+            $('id' + par).removeClassName('regra0');
+            $('id' + par).addClassName('regra1');
+        } else {
+            troca_status(par)
+            $('id' + par).removeClassName('regra1');
+            $('id' + par).addClassName('regra0');
+        }
+    }
+
+    function troca_status(id) {
+        var url = '<?php echo $this->baseUrl(); ?>/index.php/route/toogle/';
+        var params = 'route='+id;
+
+        var retorno = new Ajax.Request (
+            url, {
+                method: 'post',
+                parameters: params
+
+            }
+        );
+    }
+
+</script>

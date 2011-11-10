@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : info.xml
+    Created on : November 08, 2011, 23:55 PM
+    Author     : Rafael Bozzetti <rafael@opens.com.br>
+    Description:
+        Example module
+-->
+
+<module>
+    <name>Examples</name>
+    <description>Module example of SNEP.</description>
+    <author>OpenS Tecnologia</author>
+    <website>www.snep.com.br</website>
+</module>
