@@ -1,7 +1,18 @@
+snep-module-example
+
+Módulo demonstrativo do SNEP.
+
+
+
+
 Copie o conteúdo da pasta referente a versão do SNEP que você utiliza para a pasta /modules/ 
 
-example-1.3.x/ 
+$ cp -r example-1.3.x/* /var/www/snep/modules/
 Módulo exemplo para a série 1.3.x
 
-example-1.4/ 
+$ cp -r example-1.4/* /var/www/snep/modules/
 Módulo exemplo para a série 1.4
+
+O módulo possui uma estrutura de banco de dados, é necessário cria-la.
+
+$ mysql -u snep -p snep25 < modules/example/install/schema.sql
